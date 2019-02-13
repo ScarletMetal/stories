@@ -1,7 +1,10 @@
 package com.company.stories;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 public class UnorderedCollection<T> {
     private List<T> list = new ArrayList<>();
@@ -14,6 +17,8 @@ public class UnorderedCollection<T> {
     public void add(T t) {
         if (list.size() < size) {
             list.add(t);
+        } else {
+            throw new IllegalArgumentException("Cannot Add To This Collection");
         }
     }
 
@@ -37,5 +42,9 @@ public class UnorderedCollection<T> {
             result.append(t);
         }
         return result.toString();
+    }
+
+    public List getInnerList() {
+        return new ArrayList<T>(list);
     }
 }
